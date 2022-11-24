@@ -5,10 +5,14 @@ import re
 import html, json
 
 headers={"User-Agent":"Mozilla/5.0 (X11; Linux x86_64; rv:107.0) Gecko/20100101 Firefox/107.0"}
+latest_title = {}
+
+# podcast to download (use URL)
 podcasts ={ 'LODE':'https://www.ivoox.com/en/podcast-orbita-de-endor-podcast_sq_f113302_1.html',
            'CAMPKRYP':'https://www.ivoox.com/podcast-campamento-krypton_sq_f167429_1.html' }
+# Output directory
 mp3_dir = './mp3/'
-latest_title = {}
+
 
 def get_episodes(_url_podcast):
     _eps = []

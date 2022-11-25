@@ -11,7 +11,7 @@ latest_title = {}
 podcasts ={ 'LODE':'https://www.ivoox.com/en/podcast-orbita-de-endor-podcast_sq_f113302_1.html',
            'CAMPKRYP':'https://www.ivoox.com/podcast-campamento-krypton_sq_f167429_1.html' }
 # Output directory
-mp3_dir = './mp3/'
+mp3_dir = '/srv/http/mp3/'
 
 
 def get_episodes(_url_podcast):
@@ -51,6 +51,8 @@ def get_audio_link(_name , _data):
     content_mp3 = requests.get(mp3_new_url, headers=headers)# ,proxies=proxies, verify=False) #, allow_redirects=False)
     if content_mp3.status_code != 401:
         #save mp3
+        _title = _title.replace('#','_')
+        _title = _title.replace(':','_')
         with open( os.path.join(mp3_dir , (_title[:60].replace(" ","_")) +'.mp3'), 'wb') as f:
             f.write(content_mp3.content)
     # save as latest title

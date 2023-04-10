@@ -76,13 +76,14 @@ for podcast_name, podcast_url in podcasts.items():
     # get only the newest episode
     new_ep = []
     for ep in episode_arr:
+        if podcast_name not in latest_title:
+            latest_title.update({podcast_name:""})
         if podcast_name in latest_title:
             if latest_title[podcast_name] == ep[0]:
                 break
             else:
                 print("Queue %s" % ep)
                 new_ep.append(ep) 
-
 
     # get episodes     
     for eps in reversed(new_ep):

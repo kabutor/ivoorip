@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+
+
 import os, sys
 import requests
 from bs4 import BeautifulSoup
@@ -52,6 +55,7 @@ def get_audio_link(_name , _data):
     if content_mp3.status_code != 401:
         #save mp3 title
         _title_tosave = _title.replace('#','_')
+        _title_tosave = _title.replace('/','_')
         _title_tosave = _title_tosave.replace(':','_')
         _title_tosave = _title_tosave.replace(" ","_")
         with open( os.path.join(mp3_dir , (_title_tosave[:60]) +'.mp3'), 'wb') as f:

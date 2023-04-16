@@ -32,7 +32,7 @@ def get_episodes(_url_podcast):
             #print(_title)
             _result = i['onclick'].split('"')[1]
             _eps.append([_title, _result])
-            print(_result)
+            #print(_result)
     return _eps
             
 def get_audio_link(_name , _data):

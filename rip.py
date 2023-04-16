@@ -18,17 +18,21 @@ mp3_dir = '/srv/http/mp3/'
 
 
 def get_episodes(_url_podcast):
+    print(_url_podcast)
     _eps = []
     content = requests.get(_url_podcast, headers=headers)
     soup = BeautifulSoup(content.text, 'html.parser')
 
     divs = soup.select("div.play > a")
     for i in divs:
-        _title = html.unescape(i['title'][13:])
-        #print(_title)
-        _result = i['onclick'].split('"')[1]
-        _eps.append([_title, _result])
-        #print(_result)
+        # changes on the web April-23
+        #     print(i.decode())
+        if "location.href" in i.decode():
+            _title = html.unescape(i['title'][13:])
+            #print(_title)
+            _result = i['onclick'].split('"')[1]
+            _eps.append([_title, _result])
+            print(_result)
     return _eps
             
 def get_audio_link(_name , _data):
